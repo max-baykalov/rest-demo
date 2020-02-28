@@ -1,9 +1,9 @@
 import express from 'express';
-// import bodyParser from 'body-parser';
+import bodyParser from 'body-parser';
 
 const app = express();
 app.use(express.static('static'));
-// app.use(bodyParser.json({ type: 'application/json' }));
+app.use(bodyParser.json({ type: 'application/json' }));
 
 // JS demo
 const a = 3;
@@ -18,8 +18,8 @@ app.get('/hello', function (req, res) {
 
 // Increment 'count' http://localhost:3000/count
 let count = 0;
-app.get('/count', (req, res) => {
-  count++;
+app.post('/count', (req, res) => {
+  count += (+req.body.value || 0) + 1;
   res.send({ count: count });
 });
 

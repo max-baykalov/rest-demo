@@ -4,13 +4,23 @@
 <title>Page Title</title>
 </head>
 <body>
+    <input id="asd" value="0" />
     <button onclick="count()">Count</button>
     <p id="value">Count: 0</p>
 </body>
 <script>
     async function count() {
+        var value = document.getElementById('asd').value;
+
+        console.log(value);
         const data = await fetch('/count', {
-            method: 'GET',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                value: value,
+            })
         });
         const json = await data.json();
 
