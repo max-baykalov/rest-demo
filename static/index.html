@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+    <button onclick="count()">Count</button>
+    <p id="value">Count: 0</p>
+</body>
+<script>
+    async function count() {
+        const data = await fetch('/count', {
+            method: 'GET',
+        });
+        const json = await data.json();
+
+        console.log(json);
+        document.getElementById('value').innerHTML = 'Count: ' + json.count;
+    }
+</script>
+</html>
